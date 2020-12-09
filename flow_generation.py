@@ -31,10 +31,11 @@ class FlowGeneration:
         self.droped_pkt_cnt = 0
 
         self.flows_dict = dict()
-    
+
     @staticmethod
     def hash_pkt(pkt):
         p = 1000000000003
+
         def ip_to_int(x):
             return sum([256**j*int(i) for j, i in enumerate(x.split('.')[::-1])])
         if pkt.proto not in [6, 17]:
@@ -150,8 +151,3 @@ class FlowGeneration:
 
         # 所有数据包读取完毕，dump所有的流
         self.dump_all()
-
-
-flow_generation = FlowGeneration(source="test.pcap", count=1000, output_dir="npz_s", dump="npz")
-flow_generation.run()
-flow_generation.summary()

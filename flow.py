@@ -17,8 +17,9 @@ class Flow:
         self.second_FIN = False
 
     def add_first_pkt(self, pkt):
-        proto = f"{pkt[1].proto}" if pkt[1].proto in [6, 17] else "0"  # 仅识别TCP、UDP，其他协议置为0
-        
+        proto = f"{pkt[1].proto}" if pkt[1].proto in [6, 17] else "0" 
+        # 仅识别TCP、UDP，其他协议置为0
+
         # 生成正反流的id
         self.flow_id = f"{pkt[1].src}-{pkt[1].dst}-{pkt[1].sport}-{pkt[1].dport}-" + proto
         self.bwd_flow_id = f"{pkt[1].dst}-{pkt[1].src}-{pkt[1].dport}-{pkt[1].sport}-" + proto
